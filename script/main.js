@@ -65,13 +65,13 @@ var boxClick = function (evt) {
   // Differentiate between the 2 players (odd = X, even = O), and push into respective arrays
   if (round % 2 !== 0) {
     // Push into choicesX
-    choicesX.push(index)
+    choicesX.push(Number(index));
     console.log('choicesX: ' + choicesX);
     // Call checkForWins on choicesX
     checkForWins(choicesX);
   } else {
     // Push into choicesO
-    choicesO.push(index)
+    choicesO.push(Number(index));
     console.log('choicesO: ' + choicesO);
     // Call checkForWins on choicesO
     checkForWins(choicesO);
