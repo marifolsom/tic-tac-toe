@@ -43,7 +43,7 @@ var checkForWins = function (arr) {
           counter++;
         }
         if (counter === 3) {
-          console.log('WIN!');
+          alert ('WIN!');
         }
       }
     }
@@ -78,18 +78,11 @@ var boxClick = function (evt) {
   }
   // Turn off the event listener once a box has been clicked
   $(evt.target).off();
+  if (round === 9) {
+    alert ('DRAW!')
+  }
 }
 
-// // Make variables for each box
-// var $box1 = $('#box-1');
-// var $box2 = $('#box-2');
-// var $box3 = $('#box-3');
-// var $box4 = $('#box-4');
-// var $box5 = $('#box-5');
-// var $box6 = $('#box-6');
-// var $box7 = $('#box-7');
-// var $box8 = $('#box-8');
-// var $box9 = $('#box-9');
 
 // Make a for loop to make 9 divs
 for (var i = 1; i <= 9; i++) {
