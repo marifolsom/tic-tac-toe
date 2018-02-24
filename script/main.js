@@ -11,20 +11,20 @@
   // If clickTotal is 9 (the number of boxes/turns), then call draw
 
 
-console.log('Linked!');
+
+console.log('main.js linked!');
+
 
 
 // Make an array that holds the win states
 var winStates = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]];
 
+// Make variables for each player's choices
 var choicesX = [2, 5, 7, 4];
 var choicesO = [1, 3, 6, 8, 9];
 
 // Make a variable to count number of matches in a winning array
 var counter = 0;
-// Make a variable that counts the amount of times the mouse has been clicked
-var clickTotal = 0;
-
 
 var checkForWins = function (arr) {
   // Check through the array of winning arrays
@@ -41,10 +41,49 @@ var checkForWins = function (arr) {
           counter++;
         }
         if (counter === 3) {
-          console.log('WIN!');
+          // console.log('WIN!');
         }
       }
     }
   }
 }
 checkForWins(choicesX);
+
+
+
+// // Make variables for each box
+// var $box1 = $('#box-1');
+// var $box2 = $('#box-2');
+// var $box3 = $('#box-3');
+// var $box4 = $('#box-4');
+// var $box5 = $('#box-5');
+// var $box6 = $('#box-6');
+// var $box7 = $('#box-7');
+// var $box8 = $('#box-8');
+// var $box9 = $('#box-9');
+
+var boxClick = function (evt) {
+  // console.log to see what box is clicked
+  console.log('Clicked ' + evt.target.id);
+}
+
+// For loop to make 9 divs
+for (var i = 1; i <= 9; i++) {
+  // Create the divs with an id
+  var $div = $('body').append('<div id="box' + i + '">' + i + '</div>');
+  // Style the divs
+  $('#box' + i).css({'border': '5px solid black', 'width': '150px', 'height': '150px'});
+  // Add event listeners for when each box is clicked
+  $('#box' + i).on('click', boxClick);
+}
+
+
+// Make a variable that counts the amount of times the mouse has been clicked
+var round = 0;
+
+// Differentiate between the 2 players -- odd = X, even = O
+if (round % 2 !== 0) {
+  // Push into choicesX
+} else {
+  // Push into choicesO
+}
