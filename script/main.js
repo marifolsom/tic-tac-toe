@@ -20,8 +20,10 @@ console.log('main.js linked!');
 var winStates = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]];
 
 // Make variables for each player's choices
-var choicesX = [2, 5, 7, 4];
-var choicesO = [1, 3, 6, 8, 9];
+var choicesX = [];
+var choicesO = [];
+// var choicesX = [2, 5, 7, 4];
+// var choicesO = [1, 3, 6, 8, 9];
 
 // Make a variable to count number of matches in a winning array
 var counter = 0;
@@ -35,7 +37,7 @@ var checkForWins = function (arr) {
     for (var j = 0; j < arr.length; j++) {
       // Goes through the winStates at the given index
       for (var k = 0; k < winStates[i].length; k++) {
-        // console.log to see what every loop is doing
+        // // console.log to see what every loop is doing
         // console.log(winStates[i], arr[j], winStates[i][k]);
         if (winStates[i][k] === arr[j]) {
           counter++;
@@ -51,6 +53,27 @@ checkForWins(choicesX);
 
 
 
+// Make a variable that counts the amount of times the mouse has been clicked
+var round = 0;
+
+var boxClick = function (evt) {
+  // // console.log to see what box is clicked
+  // console.log('Clicked ' + evt.target.id);
+  // Differentiate between the 2 players (odd = X, even = O), and push into respective arrays
+  if (round % 2 !== 0) {
+    // Push into choicesX
+    choicesX.push(evt.target.id)
+    console.log(choicesX + ' choicesX');
+  } else {
+    // Push into choicesO
+    choicesO.push(evt.target.id)
+    console.log(choicesO + ' choicesO');
+  }
+  // Turn off the event listener once a box has been clicked
+  $(evt.target).off();
+  round ++;
+}
+
 // // Make variables for each box
 // var $box1 = $('#box-1');
 // var $box2 = $('#box-2');
@@ -62,12 +85,7 @@ checkForWins(choicesX);
 // var $box8 = $('#box-8');
 // var $box9 = $('#box-9');
 
-var boxClick = function (evt) {
-  // console.log to see what box is clicked
-  console.log('Clicked ' + evt.target.id);
-}
-
-// For loop to make 9 divs
+// Make a for loop to make 9 divs
 for (var i = 1; i <= 9; i++) {
   // Create the divs with an id
   var $div = $('body').append('<div id="box' + i + '">' + i + '</div>');
@@ -75,15 +93,4 @@ for (var i = 1; i <= 9; i++) {
   $('#box' + i).css({'border': '5px solid black', 'width': '150px', 'height': '150px'});
   // Add event listeners for when each box is clicked
   $('#box' + i).on('click', boxClick);
-}
-
-
-// Make a variable that counts the amount of times the mouse has been clicked
-var round = 0;
-
-// Differentiate between the 2 players -- odd = X, even = O
-if (round % 2 !== 0) {
-  // Push into choicesX
-} else {
-  // Push into choicesO
 }
