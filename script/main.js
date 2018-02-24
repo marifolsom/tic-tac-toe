@@ -22,8 +22,8 @@ var winStates = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], 
 // Make variables for each player's choices
 var choicesX = [];
 var choicesO = [];
-// var choicesX = [2, 5, 7, 4];
-// var choicesO = [1, 3, 6, 8, 9];
+// // var choicesX = [2, 5, 7, 4];
+// // var choicesO = [1, 3, 6, 8, 9];
 
 // Make a variable to count number of matches in a winning array
 var counter = 0;
@@ -38,18 +38,17 @@ var checkForWins = function (arr) {
       // Goes through the winStates at the given index
       for (var k = 0; k < winStates[i].length; k++) {
         // // console.log to see what every loop is doing
-        // console.log(winStates[i], arr[j], winStates[i][k]);
+        // // console.log(winStates[i], arr[j], winStates[i][k]);
         if (winStates[i][k] === arr[j]) {
           counter++;
         }
         if (counter === 3) {
-          // console.log('WIN!');
+          console.log('WIN!');
         }
       }
     }
   }
 }
-checkForWins(choicesX);
 
 
 
@@ -58,20 +57,27 @@ var round = 0;
 
 var boxClick = function (evt) {
   // // console.log to see what box is clicked
-  // console.log('Clicked ' + evt.target.id);
+  // // console.log('Clicked ' + evt.target.id);
+  // Add to round count with every click
+  round ++;
+  // Turn box name into a number in order to be able to compare to winning arrays
+  var index = evt.target.id.charAt(3);
   // Differentiate between the 2 players (odd = X, even = O), and push into respective arrays
   if (round % 2 !== 0) {
     // Push into choicesX
-    choicesX.push(evt.target.id)
-    console.log(choicesX + ' choicesX');
+    choicesX.push(index)
+    console.log('choicesX: ' + choicesX);
+    // Call checkForWins on choicesX
+    checkForWins(choicesX);
   } else {
     // Push into choicesO
-    choicesO.push(evt.target.id)
-    console.log(choicesO + ' choicesO');
+    choicesO.push(index)
+    console.log('choicesO: ' + choicesO);
+    // Call checkForWins on choicesO
+    checkForWins(choicesO);
   }
   // Turn off the event listener once a box has been clicked
   $(evt.target).off();
-  round ++;
 }
 
 // // Make variables for each box
@@ -89,8 +95,8 @@ var boxClick = function (evt) {
 for (var i = 1; i <= 9; i++) {
   // Create the divs with an id
   var $div = $('body').append('<div id="box' + i + '">' + i + '</div>');
-  // Style the divs
+  // Style each of the divs
   $('#box' + i).css({'border': '5px solid black', 'width': '150px', 'height': '150px'});
-  // Add event listeners for when each box is clicked
+  // Add event listeners to the divs for when each box is clicked
   $('#box' + i).on('click', boxClick);
 }
