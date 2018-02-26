@@ -7,7 +7,7 @@ body, html {
 h1 {
   text-align: center;
   font-family: 'Questrial', 'Helvetica', sans-serif;
-  font-weight: bold;
+  font-size: 30px;
   color: #545454;
   padding: 50px 0 5px 0;
 }
@@ -15,6 +15,7 @@ h1 {
 #reset-button {
   font-family: 'Questrial', 'Helvetica', sans-serif;
   font-size: 16px;
+  color: #545454;
   background-color: #0EA092;
   border: 5px solid #0EA092;
   display: inline-block;
@@ -28,6 +29,7 @@ h1 {
 
 p {
   font-family: 'Questrial', 'Helvetica', sans-serif;
+  color: #545454;
   position: relative;
   left: 25px;
   top: 5px;

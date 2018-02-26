@@ -43,7 +43,9 @@ var checkForWins = function (arr) {
         }
         // If three in a row, player wins
         if (counter === 3) {
-          alert ('WIN!');
+          $('h1').text('WIN!');
+          // Remove event listeners once there's a winner
+          $boxes.off('click');
         }
       }
     }
@@ -100,11 +102,10 @@ var boxClick = function (evt) {
   } else {
     // Otherwise, players draw when 9 rounds have passed
     // Can't get it to say "win!" when a win occurs on the 9th turn
-    alert ('DRAW!')
+    $('h1').text('DRAW!');
   }
   // Turn off the event listener once a box has been clicked so it can't be clicked again
   $(evt.target).off();
-  console.log(round);
 }
 
 
