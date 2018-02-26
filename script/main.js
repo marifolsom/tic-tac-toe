@@ -77,6 +77,8 @@ var boxClick = function (evt) {
         'font-size': '150px',
         'text-align': 'center'
       });
+      // Display that it's player O's turn next
+      $('.turn-indicator').text('O\'s turn');
     } else {
       // Push into choicesO
       choicesO.push(Number(index));
@@ -92,6 +94,8 @@ var boxClick = function (evt) {
         'font-size': '150px',
         'text-align': 'center'
       });
+      // Display that it's player X's turn next
+      $('.turn-indicator').text('X\'s turn');
     }
   } else {
     // Otherwise, players draw when 9 rounds have passed
