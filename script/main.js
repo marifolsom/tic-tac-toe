@@ -41,9 +41,14 @@ var checkForWins = function (arr) {
         if (winStates[i][k] === arr[j]) {
           counter++;
         }
-        // If three in a row, player wins
-        if (counter === 3) {
-          $('h1').text('WIN!');
+        // If three in a row, player X wins
+        if (counter === 3 && arr === choicesX) {
+          $('h1').text('PLAYER X WINS!');
+          // Remove event listeners once there's a winner
+          $boxes.off('click');
+        // If three in a row, player O wins
+        } else if (counter === 3 && arr === choicesO) {
+          $('h1').text('PLAYER O WINS!');
           // Remove event listeners once there's a winner
           $boxes.off('click');
         }
