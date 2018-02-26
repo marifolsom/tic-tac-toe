@@ -57,6 +57,8 @@ var boxClick = function (evt) {
   // // console.log('Clicked ' + evt.target.id);
   // Turn box name into a number in order to be able to compare to winning arrays
   var index = evt.target.id.charAt(3);
+  // Add to round count with every box click
+  round ++;
   // If the round is less than 9, then keep checking for wins
   if (round < 9) {
     // Differentiate between the 2 players (odd = X, even = O), and push into respective arrays
@@ -68,7 +70,13 @@ var boxClick = function (evt) {
       // Call checkForWins on choicesX
       checkForWins(choicesX);
       // Add an X
-      $('#box' + index).text('X');
+      $('#box' + index).text('X').css({
+        'color': '#545454',
+        'font-family': 'Questrial',
+        'font-weight': 'bold',
+        'font-size': '150px',
+        'text-align': 'center'
+      });
     } else {
       // Push into choicesO
       choicesO.push(Number(index));
@@ -77,16 +85,21 @@ var boxClick = function (evt) {
       // Call checkForWins on choicesO
       checkForWins(choicesO);
       // Add an O
-      $('#box' + index).text('O');
+      $('#box' + index).text('O').css({
+        'color': '#F2ECD3',
+        'font-family': 'Questrial',
+        'font-weight': 'bold',
+        'font-size': '150px',
+        'text-align': 'center'
+      });
     }
   } else {
     // Otherwise, players draw when 9 rounds have passed
+    // Can't get it to say "win!" when a win occurs on the 9th turn
     alert ('DRAW!')
   }
   // Turn off the event listener once a box has been clicked so it can't be clicked again
   $(evt.target).off();
-  // Add to round count with every box click
-  round ++;
   console.log(round);
 }
 
@@ -98,17 +111,27 @@ for (var i = 1; i <= 9; i++) {
   var $div = $('body').append('<div class="boxes" id="box' + i + '"></div>');
   // Style each of the divs
   $('#box' + i).css({
-    'border': '5px solid black',
+    'border': '5px solid #0EA092',
     'width': '150px',
     'height': '150px',
-    'display': 'inline-block'
+    'display': 'inline-block',
+    'float': 'left'
+  }).mouseenter(function() {
+    $(this).css('background', '#2dc3b4');
+  }).mouseleave(function() {
+    $(this).css('background', '#16BDAC');
   });
   // Add event listeners to the divs for when each box is clicked
   $('#box' + i).on('click', boxClick);
 }
 
 
+
 // Add box divs into the container div
-var $container = $('.container').css({'width': '500px', 'margin': '0, auto'});
+var $container = $('.container').css({
+  'width': '500px',
+  'margin': '0 auto',
+  'display': 'block'
+  });
 var $boxes = $('.boxes');
 $container.append($boxes);
