@@ -45,12 +45,12 @@ var checkForWins = function (arr) {
         if (counter === 3 && arr === choicesX) {
           $('h1').text('PLAYER X WINS!');
           // Remove event listeners once there's a winner
-          $boxes.off('click');
+          $boxes.off();
         // If three Os in a row, player O wins
         } else if (counter === 3 && arr === choicesO) {
           $('h1').text('PLAYER O WINS!');
           // Remove event listeners once there's a winner
-          $boxes.off('click');
+          $boxes.off();
         }
       }
     }
@@ -134,8 +134,8 @@ for (var i = 1; i <= 9; i++) {
   }).mouseleave(function() {
     $(this).css('background', '#16BDAC');
   });
-  // Add event listeners to the divs for when each box is clicked
-  $('#box' + i).on('click', boxClick);
+  // // Add event listeners to the divs for when each box is clicked
+  // $('#box' + i).on('click', boxClick);
 }
 
 
@@ -148,3 +148,5 @@ var $container = $('.container').css({
   });
 var $boxes = $('.boxes');
 $container.append($boxes);
+// Add event listener to the parent element of the divs (instead of for every div)
+$container.on('click', boxClick);
