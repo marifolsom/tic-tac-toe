@@ -117,7 +117,10 @@ for (var i = 1; i <= 9; i++) {
     'display': 'inline-block',
     'float': 'left'
   }).mouseenter(function() {
-    $(this).css('background', '#2dc3b4');
+    $(this).css({
+      'background': '#2dc3b4',
+      'cursor': 'pointer'
+    });
   }).mouseleave(function() {
     $(this).css('background', '#16BDAC');
   });
