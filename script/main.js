@@ -9,13 +9,20 @@ console.log('main.js linked!');
   // Make a variable that counts the amount of times the mouse has been clicked (clickTotal)
   // If the clickTotal is even, then place an X
   // Else, if the clickTotal is odd, then place an O
-// How to check if board is full?
+  // How to check if board is full?
   // If clickTotal is 9 (the number of boxes/turns), then call draw
 
-
-
 // Make an array that holds the win states
-var winStates = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]];
+var winStates = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9],
+  [1, 5, 9],
+  [3, 5, 7]
+];
 // Make variables to store each player's choices
 var choicesX = [];
 var choicesO = [];
@@ -24,9 +31,7 @@ var counter = 0;
 // Make a variable that counts the amount of times the mouse has been clicked
 var round = 0;
 
-
-
-var checkForWins = function (arr) {
+var checkForWins = function(arr) {
   // Check through the array of winning arrays
   for (var i = 0; i < winStates.length; i++) {
     // Reset the counter
@@ -46,7 +51,7 @@ var checkForWins = function (arr) {
           $('h1').text('PLAYER X WINS!');
           // Remove event listeners once there's a winner
           $boxes.off();
-        // If three Os in a row, player O wins
+          // If three Os in a row, player O wins
         } else if (counter === 3 && arr === choicesO) {
           $('h1').text('PLAYER O WINS!');
           // Remove event listeners once there's a winner
@@ -55,17 +60,15 @@ var checkForWins = function (arr) {
       }
     }
   }
-}
+};
 
-
-
-var boxClick = function (evt) {
+var boxClick = function(evt) {
   // // console.log to see which box is clicked
   // // console.log('Clicked ' + evt.target.id);
   // Turn box name into a number in order to be able to compare to winning arrays
   var index = evt.target.id.charAt(3);
   // Add to round count with every box click
-  round ++;
+  round++;
   // If the round is less than 9, then keep checking for wins
   if (round < 9) {
     // Differentiate between the 2 players (odd = X, even = O), and push into respective arrays
@@ -77,15 +80,17 @@ var boxClick = function (evt) {
       // Call checkForWins on choicesX
       checkForWins(choicesX);
       // Add an X
-      $('#box' + index).text('X').css({
-        'color': '#545454',
-        'font-family': 'Questrial',
-        'font-weight': 'bold',
-        'font-size': '150px',
-        'text-align': 'center'
-      });
+      $('#box' + index)
+        .text('X')
+        .css({
+          color: '#545454',
+          'font-family': 'Questrial',
+          'font-weight': 'bold',
+          'font-size': '150px',
+          'text-align': 'center'
+        });
       // Display that it's player O's turn next
-      $('.turn-indicator').text('O\'s turn');
+      $('.turn-indicator').text("O's turn");
     } else {
       // Push into choicesO
       choicesO.push(Number(index));
@@ -94,15 +99,17 @@ var boxClick = function (evt) {
       // Call checkForWins on choicesO
       checkForWins(choicesO);
       // Add an O
-      $('#box' + index).text('O').css({
-        'color': '#F2ECD3',
-        'font-family': 'Questrial',
-        'font-weight': 'bold',
-        'font-size': '150px',
-        'text-align': 'center'
-      });
+      $('#box' + index)
+        .text('O')
+        .css({
+          color: '#F2ECD3',
+          'font-family': 'Questrial',
+          'font-weight': 'bold',
+          'font-size': '150px',
+          'text-align': 'center'
+        });
       // Display that it's player X's turn next
-      $('.turn-indicator').text('X\'s turn');
+      $('.turn-indicator').text("X's turn");
     }
   } else {
     // Otherwise, players draw when 9 rounds have passed
@@ -111,42 +118,41 @@ var boxClick = function (evt) {
   }
   // Turn off the event listener once a box has been clicked so it can't be clicked again
   $(evt.target).off();
-}
-
-
+};
 
 // Make a for loop to make 9 divs and add event listeners
 for (var i = 1; i <= 9; i++) {
   // Create the divs with an id
   var $div = $('body').append('<div class="boxes" id="box' + i + '"></div>');
   // Style each of the divs
-  $('#box' + i).css({
-    'border': '5px solid #0EA092',
-    'width': '150px',
-    'height': '150px',
-    'display': 'inline-block',
-    'float': 'left'
-  }).mouseenter(function() {
-    $(this).css({
-      'background': '#2dc3b4',
-      'cursor': 'pointer'
+  $('#box' + i)
+    .css({
+      border: '5px solid #0EA092',
+      width: '150px',
+      height: '150px',
+      display: 'inline-block',
+      float: 'left'
+    })
+    .mouseenter(function() {
+      $(this).css({
+        background: '#2dc3b4',
+        cursor: 'pointer'
+      });
+    })
+    .mouseleave(function() {
+      $(this).css('background', '#16BDAC');
     });
-  }).mouseleave(function() {
-    $(this).css('background', '#16BDAC');
-  });
-  // // Add event listeners to the divs for when each box is clicked
-  // $('#box' + i).on('click', boxClick);
+  // Add event listeners to the divs for when each box is clicked
+  $('#box' + i).on('click', boxClick);
 }
-
-
 
 // Add box divs into the container div
 var $container = $('.container').css({
-  'width': '500px',
-  'margin': '0 auto',
-  'display': 'block'
-  });
+  width: '500px',
+  margin: '0 auto',
+  display: 'block'
+});
 var $boxes = $('.boxes');
 $container.append($boxes);
-// Add event listener to the parent element of the divs (instead of for every div)
-$container.on('click', boxClick);
+// // Add event listener to the parent element of the divs (instead of for every div)
+// $container.on('click', boxClick);
