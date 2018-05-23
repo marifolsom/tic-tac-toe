@@ -1,6 +1,4 @@
-![Think outside the box](./readme-assets/outsidethebox.jpg)
-
-# HOMEWORK: TIC TAC TOE
+# TIC TAC TOE
 
 ### Your Mission: Build Tic Tac Toe from scratch! ❌੦
 
@@ -47,8 +45,3 @@ Which of these tools you are going to need to build this game?
 - A pull request created on _this repo_.
 - A link to your Tic Tac Toe on BitBalloon.
 - Completion, comfort, wins, losses, questions... you know the drill.
-
-## This homework is due 🚨 11PM on SUNDAY NIGHT! 🚨
-
-### ❗Remember ...
-![Motivation](https://info.examtime.com/files/2014/05/motivation-to-study1.jpg)
